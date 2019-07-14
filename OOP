@@ -1,0 +1,19 @@
+#Basics about OOP
+#Basic format
+class cl3:
+  def __init__(self,name,job):
+    self.myname = name
+    self.myjob = job
+  def func(self):
+    print(self.myname)  
+
+#Inherit class
+class father(self):
+  def shave(self):
+    print("Shave")
+ 
+class son(father):
+  def shave(self):
+    print("Shave 2")
+  def more_func(self):
+    print("I can do more")
