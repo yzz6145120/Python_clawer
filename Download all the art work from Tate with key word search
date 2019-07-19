@@ -3,7 +3,6 @@ import urllib.error
 
 kw = input("Search key word:")
 page_n = input("How many pages?")
-Url = "https://www.tate.org.uk/search?type=artwork&q="+str(kw)+"&page="+str(page_n)
 Location = "D:\\APP\\Programming\\Home\\crawler\\Tate_img\\img\\"
 
 #Set opener as firefox
@@ -18,18 +17,21 @@ pat_I = '<noscript><img src="(.*?)_7.jpg'
 
 #loops to get pics
 for i in range (1,int(page_n)+1):
+    Url = "https://www.tate.org.uk/search?type=artwork&q="+str(kw)+"&page="+str(i)
     Page_D = urllib.request.urlopen(Url).read().decode("utf-8")
     find_names = re.compile(pat_N).findall(Page_D)
-    
     for j in range(1,len(find_names)):
         find_imgs = re.compile(pat_I,re.S).findall(Page_D)
     for n in range(1,len(find_imgs)):
         try:
-            print(find_names[n])
-            File_path = Location+str(find_names[n])+".jpg"
-            urllib.request.urlretrieve(find_imgs[n]+"_10.jpg", filename = File_path)
-        except urllib.error.URLError as error:
-            print(error)
+            try:
+                print(find_names[n])
+                File_path = Location+str(find_names[n])+".jpg"
+                urllib.request.urlretrieve(find_imgs[n]+"_10.jpg", filename = File_path)
+            except urllib.error.URLError as error:
+                print(error)
+        except Exception as err:
+            print(err)
     print(f"""
 ----------
 End of Page {str(i)}
