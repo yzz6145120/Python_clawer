@@ -1,0 +1,23 @@
+#将kw.txt文件里每行的字符在sample.txt里查找一遍并输出出现次数
+
+import re, os
+
+read_kw = open("D:\\APP\\Programming\\Home\\find_data\\kw.txt", 'r',encoding="utf-8")
+kw = read_kw.read()
+
+res = []
+with open("D:\\APP\\Programming\\Home\\find_data\\kw.txt", 'r',encoding="utf-8") as f:
+    for lines in f:
+        res.append(lines.strip().split("\n"))
+
+read_data = open("D:\\APP\\Programming\\Home\\find_data\\sample.txt", encoding="utf-8")
+Data = read_data.read()
+
+End_R = open("D:\\APP\\Programming\\Home\\find_data\\result.txt", 'w',encoding="utf-8")
+for i in range(0,len(res)):
+    a="".join(res[i])
+    result = re.compile(a).findall(Data)
+    End_R.write(str(res[i])+str(len(result))+"\n")
+#print(res[i])
+#print(len(result))
+End_R.close()
