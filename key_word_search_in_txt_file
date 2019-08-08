@@ -14,10 +14,15 @@ read_data = open("D:\\APP\\Programming\\Home\\find_data\\sample.txt", encoding="
 Data = read_data.read()
 
 End_R = open("D:\\APP\\Programming\\Home\\find_data\\result.txt", 'w',encoding="utf-8")
+total = 0
 for i in range(0,len(res)):
     a="".join(res[i])
     result = re.compile(a).findall(Data)
     End_R.write(str(res[i])+str(len(result))+"\n")
+    if len(result) < 20:
+        total = total + len(result)
 #print(res[i])
 #print(len(result))
+print("Total number = "+str(total))
+End_R.write("Total number = "+str(total))
 End_R.close()
